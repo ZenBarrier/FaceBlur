@@ -16,7 +16,7 @@ chrome.webNavigation.onDOMContentLoaded.addListener(function (e) {
     //window.alert("commited");
     count++;
     chrome.browserAction.setBadgeText({ text: count + '', tabId: e.tabId });
-    chrome.browserAction.setIcon({ path: "icon-On.png" });
+    chrome.browserAction.setIcon({ path: "images/icon-On.png" });
 
 }, {
     url: [{ hostSuffix: 'facebook.com' },
