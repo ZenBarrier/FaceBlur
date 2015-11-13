@@ -2,7 +2,7 @@
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
     //window.alert("activated");
-    document.title = "lel";
+    count = 0;
 });
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
@@ -11,10 +11,12 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
     }
 });
 
+var count = 0;
 chrome.webNavigation.onDOMContentLoaded.addListener(function (e) {
     //window.alert("commited");
-
-    document.addEventListener('DOMNodeInserted', function () { alert("dom change"); });
+    count++;
+    chrome.browserAction.setBadgeText({ text: count + '', tabId: e.tabId });
+    chrome.browserAction.setIcon({ path: "icon-On.png" });
 
 }, {
     url: [{ hostSuffix: 'facebook.com' },
