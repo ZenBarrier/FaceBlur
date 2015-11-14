@@ -21,6 +21,14 @@
     "default_popup": "popup.html",
     "default_title": "Faceblr"
   },
+  "content_scripts": [
+    {
+      "matches": ["*://www.facebook.com/*"],
+      "css": ["css/mystyles.css"],
+      "js": ["js/jquery-2.1.4.js", "js/myscript.js"]
+    }
+  ],
+
   "permissions": [
     "activeTab",
     "tabs",
