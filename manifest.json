@@ -33,6 +33,7 @@
 
   "permissions": [
     "activeTab",
+    "storage",
     "tabs",
     "webNavigation",
     "https://ajax.googleapis.com/"
