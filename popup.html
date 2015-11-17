@@ -4,34 +4,50 @@
  "browser_action" field in manifest.json contains the "default_popup" key with
  value "popup.html".
  -->
-<html>
-  <head>
+<html ng-app="FBlurApp">
+<head>
     <title>Getting Started Extension's Popup</title>
     <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
+        body {
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+            font-size: 100%;
+        }
+
+        #popbox {
+            /* avoid an excessively wide status text */
+            white-space: normal;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 260px;
+            max-height: 400px;
+        }
     </style>
 
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
+
+    <script src="js/angular.js"></script>
     <script src="js/popup.js"></script>
-  </head>
-  <body>
-    <div id="status"></div>
-    <img id="image-result" hidden>
-  </body>
+</head>
+<body>
+    <div id="popbox">
+        
+        <div ng-controller="TodoListController as todoList">
+            <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+            [ <a href="" ng-click="todoList.archive()">archive</a> ]
+            <ul class="unstyled">
+                <li ng-repeat="todo in todoList.todos">
+                    <input type="checkbox" ng-model="todo.done">
+                    <span class="done-{{todo.done}}">{{todo.text}}</span>
+                </li>
+            </ul>
+            <form ng-submit="todoList.addTodo()">
+                <input type="text" ng-model="todoList.todoText" size="30"
+                       placeholder="add new todo here">
+                <input class="btn-primary" type="submit" value="add">
+            </form>
+        </div>
+
+    </div>
+
+</body>
 </html>
 
