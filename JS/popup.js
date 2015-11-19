@@ -1,9 +1,19 @@
 angular.module('FBlurApp', [])
   .controller('TodoListController', ['$scope', function ($scope) {
       var todoList = this;
-      todoList.todos = [
-        { text: 'learn angular', done: true },
-        { text: 'build an angular app', done: false }];
+      todoList.todos = [];
+
+      chrome.tabs.query({ 'active': true }, function (tabs) {
+          var currentTab = tabs[0];
+          var url = new URL(currentTab.url);
+          var name = currentTab.title;
+          if (url.hostname == "www.facebook.com") {
+              todoList.formShow = true;
+              todoList.todoText = name;
+          } else {
+              todoList.formShow = false;
+          }
+      });
 
       chrome.storage.sync.get({
           storedTodos: []
