@@ -2,6 +2,14 @@
 
     MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
+    var blockedFaces = [];
+    chrome.storage.sync.get({
+        StoredBlockedFaces: []
+    }, function (items) {
+        blockedFaces = items.StoredBlockedFaces;
+        console.log(blockedFaces);
+    });
+
     var observer = new MutationObserver(function (mutations, observer) {
         // fired when a mutation occurs
         console.log(mutations, observer);
