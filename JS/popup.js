@@ -21,6 +21,7 @@ angular.module('FBlurApp', [])
           todoList.todos = items.StoredBlockedFaces;
           console.log(items.StoredBlockedFaces);
           $scope.$apply();
+
       });
 
       todoList.addTodo = function () {

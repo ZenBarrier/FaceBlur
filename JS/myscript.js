@@ -3,6 +3,8 @@
     MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
     var blockedFaces = [];
+    var faceQuery = '';
+
     chrome.storage.sync.get({
         StoredBlockedFaces: []
     }, function (items) {
@@ -12,13 +14,15 @@
             return item['profile'];
         });
 
+        faceQuery = 'a[href^=' + blockedFaces.join('], a[href^=') + ']';
+
         console.log(blockedFaces);
     });
 
     var observer = new MutationObserver(function (mutations, observer) {
         // fired when a mutation occurs
         console.log(mutations, observer);
-        $('div a[href^="https://www.facebook.com/rosalie.mii"]').parent().parent().hide();
+        $(faceQuery).parent().parent().hide();
 
         // ...
     });
