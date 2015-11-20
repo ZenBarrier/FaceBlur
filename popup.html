@@ -42,11 +42,12 @@
                     <span class="done-{{todo.done}}">{{todo.text}}</span>
                 </li>
             </ul>
-            <form ng-submit="todoList.addTodo()" ng-show="todoList.formShow">
-                <input type="text" ng-model="todoList.todoText" size="30"
-                       placeholder="add new todo here">
-                <input class="btn-primary" type="submit" value="add">
-            </form>
+            <button ng-click="todoList.addTodo()" ng-show="todoList.formShow && !todoList.stored">
+                Blur {{todoList.name}}
+            </button>
+            <button ng-click="todoList.addTodo()" ng-show="todoList.formShow && todoList.stored">
+                Unblur {{todoList.name}}
+            </button>
         </div>
 
     </div>

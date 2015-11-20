@@ -3,13 +3,28 @@ angular.module('FBlurApp', [])
       var todoList = this;
       todoList.todos = [];
 
+      var currentURL;
+      var profile = "";
+
+      var fbPaths = ['events', 'messages', 'lists', 'saved', 'groups', 'games',
+          'onthisday', 'pages', 'developers', 'insights', 'friends', 'notifications',
+          'settings', 'campaign', 'help', 'support', 'ads', ''];
+
       chrome.tabs.query({ 'active': true }, function (tabs) {
           var currentTab = tabs[0];
-          var url = new URL(currentTab.url);
-          var name = currentTab.title;
-          if (url.hostname == "www.facebook.com") {
+          currentURL = new URL(currentTab.url);
+          todoList.name = currentTab.title;
+          if (currentURL.hostname == "www.facebook.com") {
               todoList.formShow = true;
-              todoList.todoText = name;
+              var currentPath = currentURL.pathname.split('/')[1];
+              if (currentPath == "profile.php") {
+                  profile = currentURL.href.split('&')[0];
+              } else if (fbPaths.indexOf(currentPath) == -1) {
+                  profile = currentURL.href.split('?')[0];
+              } else {
+                  todoList.formShow = false;
+              }
+
           } else {
               todoList.formShow = false;
           }
@@ -26,8 +41,8 @@ angular.module('FBlurApp', [])
 
       todoList.addTodo = function () {
           todoList.todos.push({ text: todoList.todoText, done: false });
-          todoList.todoText = '';
           console.log(todoList.todos);
+          todoList.stored = true;
 
           chrome.storage.sync.set({
               StoredBlockedFaces: todoList.todos

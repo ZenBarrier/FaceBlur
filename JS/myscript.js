@@ -14,14 +14,15 @@
             return item['profile'];
         });
 
-        faceQuery = 'a[href^=' + blockedFaces.join('], a[href^=') + ']';
+        faceQuery = 'a[href^="' + blockedFaces.join('"], a[href^="') + '"]';
 
         console.log(blockedFaces);
+        console.log(faceQuery);
     });
 
     var observer = new MutationObserver(function (mutations, observer) {
         // fired when a mutation occurs
-        console.log(mutations, observer);
+        //console.log(mutations, observer);
         $(faceQuery).parent().parent().hide();
 
         // ...
