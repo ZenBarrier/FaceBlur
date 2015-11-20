@@ -6,7 +6,12 @@
     chrome.storage.sync.get({
         StoredBlockedFaces: []
     }, function (items) {
-        blockedFaces = items.StoredBlockedFaces;
+        var blockedFacesObjectArray = items.StoredBlockedFaces;
+
+        blockedFaces = blockedFacesObjectArray.map(function (item) {
+            return item['profile'];
+        });
+
         console.log(blockedFaces);
     });
 

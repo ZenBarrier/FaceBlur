@@ -16,10 +16,10 @@ angular.module('FBlurApp', [])
       });
 
       chrome.storage.sync.get({
-          storedTodos: []
+          StoredBlockedFaces: []
       }, function (items) {
-          todoList.todos = items.storedTodos;
-          console.log(items.storedTodos);
+          todoList.todos = items.StoredBlockedFaces;
+          console.log(items.StoredBlockedFaces);
           $scope.$apply();
       });
 
@@ -29,7 +29,7 @@ angular.module('FBlurApp', [])
           console.log(todoList.todos);
 
           chrome.storage.sync.set({
-              storedTodos: todoList.todos
+              StoredBlockedFaces: todoList.todos
           }, function (items) {
               console.log("stored");
           });
@@ -52,9 +52,9 @@ angular.module('FBlurApp', [])
               if (!todo.done) todoList.todos.push(todo);
 
               chrome.storage.sync.set({
-                  storedTodos: todoList.todos
+                  StoredBlockedFaces: todoList.todos
               }, function (items) {
-                  console.log("stored");
+                  console.log("archived");
                   $scope.$apply();
               });
 
