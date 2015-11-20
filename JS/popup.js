@@ -1,5 +1,5 @@
 angular.module('FBlurApp', [])
-  .controller('TodoListController', ['$scope', function ($scope) {
+  .controller('PopupController', ['$scope', function ($scope) {
       var todoList = this;
       todoList.todos = [];
 
@@ -37,10 +37,16 @@ angular.module('FBlurApp', [])
           console.log(items.StoredBlockedFaces);
           $scope.$apply();
 
+          if (todoList.todos.some(function (e) { return e.profile === profile })) {
+              todoList.stored = true;
+              console.log("it is stored");
+              $scope.$apply();
+          } else { todoList.stored = false; }
+
       });
 
       todoList.addTodo = function () {
-          todoList.todos.push({ text: todoList.todoText, done: false });
+          todoList.todos.push({ name: todoList.name, done: false, blur: true, profile: profile });
           console.log(todoList.todos);
           todoList.stored = true;
 

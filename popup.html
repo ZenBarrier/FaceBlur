@@ -33,13 +33,13 @@
 <body>
     <div id="popbox">
         
-        <div ng-controller="TodoListController as todoList">
+        <div ng-controller="PopupController as todoList">
             <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
             [ <a href="" ng-click="todoList.archive()">archive</a> ]
             <ul class="unstyled">
                 <li ng-repeat="todo in todoList.todos | orderBy:'text' track by $index">
                     <input type="checkbox" ng-model="todo.done">
-                    <span class="done-{{todo.done}}">{{todo.text}}</span>
+                    <span class="done-{{todo.done}}">{{todo.name}}</span>
                 </li>
             </ul>
             <button ng-click="todoList.addTodo()" ng-show="todoList.formShow && !todoList.stored">
