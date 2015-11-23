@@ -1,7 +1,7 @@
 angular.module('FBlurApp', [])
   .controller('PopupController', ['$scope', function ($scope) {
-      var todoList = this;
-      todoList.todos = [];
+      var FaceList = this;
+      FaceList.faces = [];
 
       var currentURL;
       var profile = "";
@@ -13,68 +13,71 @@ angular.module('FBlurApp', [])
       chrome.tabs.query({ 'active': true }, function (tabs) {
           var currentTab = tabs[0];
           currentURL = new URL(currentTab.url);
-          todoList.name = currentTab.title;
+          FaceList.name = currentTab.title;
           if (currentURL.hostname == "www.facebook.com") {
-              todoList.formShow = true;
+              FaceList.formShow = true;
               var currentPath = currentURL.pathname.split('/')[1];
               if (currentPath == "profile.php") {
                   profile = currentURL.href.split('&')[0];
               } else if (fbPaths.indexOf(currentPath) == -1) {
                   profile = currentURL.href.split('?')[0];
               } else {
-                  todoList.formShow = false;
+                  FaceList.formShow = false;
               }
 
           } else {
-              todoList.formShow = false;
+              FaceList.formShow = false;
           }
       });
 
       chrome.storage.sync.get({
           StoredBlockedFaces: []
       }, function (items) {
-          todoList.todos = items.StoredBlockedFaces;
+          FaceList.faces = items.StoredBlockedFaces;
           console.log(items.StoredBlockedFaces);
           $scope.$apply();
 
-          if (todoList.todos.some(function (e) { return e.profile === profile })) {
-              todoList.stored = true;
+          if (FaceList.faces.some(function (e) { return e.profile === profile })) {
+              FaceList.stored = true;
               console.log("it is stored");
               $scope.$apply();
-          } else { todoList.stored = false; }
+          } else { FaceList.stored = false; }
 
       });
 
-      todoList.addTodo = function () {
-          todoList.todos.push({ name: todoList.name, done: false, blur: true, profile: profile });
-          console.log(todoList.todos);
-          todoList.stored = true;
+      FaceList.addFace = function () {
+          FaceList.faces.push({ name: FaceList.name, done: false, blur: true, profile: profile });
+          console.log(FaceList.faces);
+          FaceList.stored = true;
 
           chrome.storage.sync.set({
-              StoredBlockedFaces: todoList.todos
+              StoredBlockedFaces: FaceList.faces
           }, function (items) {
               console.log("stored");
           });
       };
 
-      todoList.remaining = function () {
+      FaceList.removeFace = function () {
+      }
+
+      FaceList.remaining = function () {
           var count = 0;
-          angular.forEach(todoList.todos, function (todo) {
-              count += todo.done ? 0 : 1;
+          angular.forEach(FaceList.faces, function (face) {
+              count += face.done ? 0 : 1;
           });
           return count;
       };
 
-      todoList.archive = function () {
+      FaceList.archive = function () {
 
-          var oldTodos = todoList.todos;
-          todoList.todos = [];
+          var oldfaces = FaceList.faces;
+          FaceList.faces = [];
 
-          angular.forEach(oldTodos, function (todo) {
-              if (!todo.done) todoList.todos.push(todo);
+          angular.forEach(oldfaces, function (face) {
+              if (!face.done) FaceList.faces.push(face);
 
               chrome.storage.sync.set({
-                  StoredBlockedFaces: todoList.todos
+                  StoredBlockedFaces: FaceList.faces
               }, function (items) {
                   console.log("archived");
                   $scope.$apply();

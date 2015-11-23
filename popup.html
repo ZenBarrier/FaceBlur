@@ -33,20 +33,20 @@
 <body>
     <div id="popbox">
         
-        <div ng-controller="PopupController as todoList">
-            <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-            [ <a href="" ng-click="todoList.archive()">archive</a> ]
+        <div ng-controller="PopupController as FaceList">
+            <span>{{FaceList.remaining()}} of {{FaceList.faces.length}} remaining</span>
+            [ <a href="" ng-click="FaceList.archive()">archive</a> ]
             <ul class="unstyled">
-                <li ng-repeat="todo in todoList.todos | orderBy:'text' track by $index">
-                    <input type="checkbox" ng-model="todo.done">
-                    <span class="done-{{todo.done}}">{{todo.name}}</span>
+                <li ng-repeat="face in FaceList.faces | orderBy:'text' track by $index">
+                    <input type="checkbox" ng-model="face.done">
+                    <span class="done-{{face.done}}">{{face.name}}</span>
                 </li>
             </ul>
-            <button ng-click="todoList.addTodo()" ng-show="todoList.formShow && !todoList.stored">
-                Blur {{todoList.name}}
+            <button ng-click="FaceList.addFace()" ng-show="FaceList.formShow && !FaceList.stored">
+                Blur {{FaceList.name}}
             </button>
-            <button ng-click="todoList.addTodo()" ng-show="todoList.formShow && todoList.stored">
-                Unblur {{todoList.name}}
+            <button ng-click="FaceList.removeFace()" ng-show="FaceList.formShow && FaceList.stored">
+                Unblur {{FaceList.name}}
             </button>
         </div>
 
