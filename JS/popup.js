@@ -58,7 +58,19 @@ angular.module('FBlurApp', [])
       };
 
       FaceList.removeFace = function () {
-      }
+          FaceList.faces = FaceList.faces.filter(function (face, index, array) {
+              return (face.profile != profile);
+          });
+
+          console.log(FaceList.faces);
+          FaceList.stored = false;
+
+          chrome.storage.sync.set({
+              StoredBlockedFaces: FaceList.faces
+          }, function (items) {
+              console.log("stored");
+          });
+      };
 
       FaceList.remaining = function () {
           var count = 0;
