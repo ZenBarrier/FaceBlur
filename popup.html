@@ -38,8 +38,8 @@
             [ <a href="" ng-click="FaceList.archive()">archive</a> ]
             <ul class="unstyled">
                 <li ng-repeat="face in FaceList.faces | orderBy:'text' track by $index">
-                    <input type="checkbox" ng-model="face.done">
-                    <span class="done-{{face.done}}">{{face.name}}</span>
+                    <label><input type="checkbox" ng-model="face.done">
+                    <span class="done-{{face.done}}">{{face.name}}</span></label>
                 </li>
             </ul>
             <button ng-click="FaceList.addFace()" ng-show="FaceList.formShow && !FaceList.stored">
