@@ -8,6 +8,7 @@
 <head>
     <title>Getting Started Extension's Popup</title>
     <link rel="stylesheet" type="text/css" href="CSS/popup.css">
+    <link rel="stylesheet" type="text/css" href="CSS/bootstrap.css">
 
     <script src="js/angular.js"></script>
     <script src="js/popup.js"></script>
@@ -15,25 +16,39 @@
 
 
 <body>
-    <div id="popbox">
+    <div id="popbox" class="container">
         
-        <div ng-controller="PopupController as FaceList">
-            <button ng-click="FaceList.archive()" ng-disabled='FaceList.selected()==0'>
-                <span ng-show="FaceList.selected()>0">Delete {{FaceList.selected()}} Selected</span>
-                <span ng-hide="FaceList.selected()>0">Select to Delete</span>
-            </button>
-            <ul class="unstyled">
-                <li ng-repeat="face in FaceList.faces | orderBy:'text' track by $index">
-                    <label><input type="checkbox" ng-model="face.done">
-                    <span class="done-{{face.done}}">{{face.name}}</span></label>
-                </li>
-            </ul>
-            <button ng-click="FaceList.addFace()" ng-show="FaceList.formShow && !FaceList.stored">
-                Blur {{FaceList.name}}
-            </button>
-            <button ng-click="FaceList.removeFace()" ng-show="FaceList.formShow && FaceList.stored">
-                Unblur {{FaceList.name}}
-            </button>
+        <div class="row">
+            <div ng-controller="PopupController as FaceList" class="col-xs-12">
+                <button ng-click="FaceList.archive()" 
+                        ng-disabled='FaceList.selected()==0' 
+                        class="btn btn-danger btn-block">
+                    <span ng-show="FaceList.selected()>0">Delete {{FaceList.selected()}} Selected</span>
+                    <span ng-hide="FaceList.selected()>0">Select to Delete</span>
+                </button>
+
+                <ul class="list-unstyled">
+                    <li ng-repeat="face in FaceList.faces | orderBy:'text' track by $index"
+                        class="{{face.done==false ? 'bg-warning' : 'bg-info'}} text-center">
+                        <label>
+                            <input type="checkbox" ng-model="face.done" ng-hide="true">
+                            <span>{{face.name}}</span>
+                            <a class="glyphicon glyphicon-user" ng-click="FaceList.openLink(face.profile)"></a>
+                        </label>
+                    </li>
+                </ul>
+
+                <button ng-click="FaceList.addFace()" 
+                        ng-show="FaceList.formShow && !FaceList.stored" 
+                        class="btn btn-primary btn-block">
+                    Blur {{FaceList.name}}
+                </button>
+                <button ng-click="FaceList.removeFace()" 
+                        ng-show="FaceList.formShow && FaceList.stored" 
+                        class="btn btn-warning btn-block">
+                    Unblur {{FaceList.name}}
+                </button>
+            </div>
         </div>
 
     </div>

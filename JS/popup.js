@@ -81,7 +81,6 @@ angular.module('FBlurApp', [])
       };
 
       FaceList.archive = function () {
-
           var oldfaces = FaceList.faces;
           FaceList.faces = [];
 
@@ -94,9 +93,11 @@ angular.module('FBlurApp', [])
                   console.log("archived");
                   $scope.$apply();
               });
-
           });
-
-
       };
+
+      FaceList.openLink = function (faceURL) {
+          chrome.tabs.create({ active: true, url: faceURL });
+      }
+
   }]);
