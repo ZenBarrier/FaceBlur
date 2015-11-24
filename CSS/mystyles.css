@@ -1,2 +1,10 @@
-﻿body {
+﻿div.blur{
+    font-family:sans-serif;
+    font-weight:bold;
+    -webkit-filter: blur(15px);
+    -webkit-transition: -webkit-filter .50s;
+}
+div.blur:hover{
+    -webkit-filter: none;
+    -webkit-transition: -webkit-filter 2s;
 }
