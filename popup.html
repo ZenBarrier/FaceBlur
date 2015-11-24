@@ -7,23 +7,7 @@
 <html ng-app="FBlurApp">
 <head>
     <title>Getting Started Extension's Popup</title>
-    <style>
-        body {
-            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-            font-size: 100%;
-        }
-
-        #popbox {
-            /* avoid an excessively wide status text */
-            white-space: normal;
-            text-overflow: ellipsis;
-            overflow: auto;
-            min-width: 260px;
-            max-width:300px;
-            max-height: 400px;
-        }
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="CSS/popup.css">
 
     <script src="js/angular.js"></script>
     <script src="js/popup.js"></script>
@@ -34,8 +18,10 @@
     <div id="popbox">
         
         <div ng-controller="PopupController as FaceList">
-            <span>{{FaceList.remaining()}} of {{FaceList.faces.length}} remaining</span>
-            [ <a href="" ng-click="FaceList.archive()">archive</a> ]
+            <button ng-click="FaceList.archive()" ng-disabled='FaceList.selected()==0'>
+                <span ng-show="FaceList.selected()>0">Delete {{FaceList.selected()}} Selected</span>
+                <span ng-hide="FaceList.selected()>0">Select to Delete</span>
+            </button>
             <ul class="unstyled">
                 <li ng-repeat="face in FaceList.faces | orderBy:'text' track by $index">
                     <label><input type="checkbox" ng-model="face.done">

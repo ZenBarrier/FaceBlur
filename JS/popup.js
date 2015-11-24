@@ -72,10 +72,10 @@ angular.module('FBlurApp', [])
           });
       };
 
-      FaceList.remaining = function () {
+      FaceList.selected = function () {
           var count = 0;
           angular.forEach(FaceList.faces, function (face) {
-              count += face.done ? 0 : 1;
+              count += face.done ? 1 : 0;
           });
           return count;
       };

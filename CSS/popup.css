@@ -1,2 +1,15 @@
 ﻿body {
-}
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+            font-size: 100%;
+        }
+
+        #popbox {
+            /* avoid an excessively wide status text */
+            white-space: normal;
+            text-overflow: ellipsis;
+            overflow: auto;
+            min-width: 260px;
+            max-width:300px;
+            max-height: 400px;
+            -webkit-user-select: none
+        }
