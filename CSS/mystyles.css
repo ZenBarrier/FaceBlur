@@ -1,6 +1,4 @@
 ﻿div.blur{
-    font-family:sans-serif;
-    font-weight:bold;
     -webkit-filter: blur(15px);
     -webkit-transition: -webkit-filter .50s;
 }

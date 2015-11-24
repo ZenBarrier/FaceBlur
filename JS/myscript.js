@@ -22,10 +22,13 @@
 
     var observer = new MutationObserver(function (mutations, observer) {
         // fired when a mutation occurs
-        //console.log(mutations, observer);
-        $(faceQuery).parent().parent().hide();
 
-        // ...
+        queryResult = $(faceQuery);
+        faceCommentDiv = queryResult.closest('div.UFIComment');
+        faceCommentDiv.find('a').contents().unwrap().wrap('<b></b>');
+
+        faceCommentDiv.wrap('<div class="blur"></div>');
+
     });
 
     // define what element should be observed by the observer
