@@ -17,7 +17,16 @@ header {
     padding-top: 15px;
     padding-bottom: 10px;
 }
-
+.solid-false{
+    opacity:0.15;
+}
+.solid-true{
+    opacity:0.6;
+}
+.col:not(:first-child),.col:not(:last-child) {
+  padding-right:0px;
+  padding-left:10px;
+}
 .facesDivScroll {
     overflow-y: scroll;
     overflow-x: hidden;

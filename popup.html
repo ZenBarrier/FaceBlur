@@ -41,19 +41,18 @@
                         <li ng-repeat="face in FaceList.faces | orderBy:'text' track by $index"
                             class="{{face.done ? 'list-checked' : 'list-unchecked'}} text-center">
                             <div class="row profile-row">
-                                <label class="col-xs-1" for="doneBox">
-                                    <i class='glyphicon glyphicon-{{face.done ? "check":"unchecked"}}'></i>
-                                </label>
-                                <label class="col-xs-7 text-left">
+                                <label class="col-xs-9 text-left row">
+                                    <i class='col col-xs-1
+                                       solid-{{FaceList.selected()>0}}
+                                       glyphicon glyphicon-{{face.done ? "check":"unchecked"}}'></i>
                                     <input id="doneBox" type="checkbox" ng-model="face.done" ng-hide="true">
-                                    <span>{{face.name}}</span>
+                                    <span class="col-xs-11 col">{{face.name}}</span>
                                 </label>
-                                <label class='col-xs-1'>
+                                <label class='col-xs-2'>
                                     <input type="checkbox" ng-model="face.blur" ng-hide="true" ng-click="FaceList.save()" />
                                     <i class='glyphicon glyphicon-eye-{{face.blur ? "close":"open"}}'></i>
                                 </label>
-                                <a class="glyphicon glyphicon-user col-xs-2" ng-click="FaceList.openLink(face.profile)"></a>
-                                <span class="col-xs-1"></span>
+                                <a class="glyphicon glyphicon-user col-xs-1" ng-click="FaceList.openLink(face.profile)"></a>
                             </div>
 
                         </li>
