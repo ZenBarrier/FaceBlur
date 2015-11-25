@@ -34,8 +34,6 @@
     "page": "options.html",
     // Recommended.
     "chrome_style": true
-    // Not recommended; only provided for backwards compatibility,
-    // and will be unsupported in a future version of Chrome (TBD).
   },
 
   "permissions": [
