@@ -30,11 +30,21 @@
                 <ul class="list-unstyled">
                     <li ng-repeat="face in FaceList.faces | orderBy:'text' track by $index"
                         class="{{face.done==false ? 'bg-warning' : 'bg-info'}} text-center">
-                        <label>
-                            <input type="checkbox" ng-model="face.done" ng-hide="true">
-                            <span>{{face.name}}</span>
-                            <a class="glyphicon glyphicon-user" ng-click="FaceList.openLink(face.profile)"></a>
-                        </label>
+                        <div class="row">
+                            <label class="col-xs-8">
+                                <input type="checkbox" ng-model="face.done" ng-hide="true">
+                                <i class='glyphicon glyphicon-unchecked' ng-hide="face.done"></i>
+                                <i class='glyphicon glyphicon-check' ng-show="face.done"></i>
+                                <span>{{face.name}}</span>
+                            </label>
+                            <label class='col-xs-2'>
+                                <input type="checkbox" ng-model="face.blur" ng-hide="true" ng-click="FaceList.save()"/>
+                                <i class='glyphicon glyphicon-eye-open' ng-hide="face.blur"></i>
+                                <i class='glyphicon glyphicon-eye-close' ng-show="face.blur"></i>
+                            </label>
+                            <a class="glyphicon glyphicon-user col-xs-2" ng-click="FaceList.openLink(face.profile)"></a>
+                        </div>
+                        
                     </li>
                 </ul>
 

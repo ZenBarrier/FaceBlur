@@ -100,4 +100,12 @@ angular.module('FBlurApp', [])
           chrome.tabs.create({ active: true, url: faceURL });
       }
 
+      FaceList.save = function () {
+          chrome.storage.sync.set({
+              StoredBlockedFaces: FaceList.faces
+          }, function (items) {
+              console.log("stored");
+          });
+      }
+
   }]);

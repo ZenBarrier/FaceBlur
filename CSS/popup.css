@@ -8,8 +8,7 @@
             white-space: normal;
             text-overflow: ellipsis;
             overflow: auto;
-            min-width: 260px;
-            max-width:300px;
+            width: 300px;
             max-height: 400px;
             -webkit-user-select: none
         }
