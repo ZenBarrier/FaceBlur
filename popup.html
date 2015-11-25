@@ -33,29 +33,32 @@
                     </button>
                 </div>
 
-                <ul class="list-unstyled">
-                    <li ng-show="FaceList.faces.length==0">
-                        <strong>Go to someones profile page and press the button below to add them to this list to blur.</strong>
-                    </li>
-                    <li ng-repeat="face in FaceList.faces | orderBy:'text' track by $index"
-                        class="{{face.done ? 'list-checked' : 'list-unchecked'}} text-center">
-                        <div class="row profile-row">
-                            <label class="col-xs-8 text-left">
-                                <input type="checkbox" ng-model="face.done" ng-hide="true">
-                                <i class='glyphicon glyphicon-unchecked' ng-hide="face.done"></i>
-                                <i class='glyphicon glyphicon-check' ng-show="face.done"></i>
-                                <span>{{face.name}}</span>
-                            </label>
-                            <label class='col-xs-2'>
-                                <input type="checkbox" ng-model="face.blur" ng-hide="true" ng-click="FaceList.save()"/>
-                                <i class='glyphicon glyphicon-eye-open' ng-hide="face.blur"></i>
-                                <i class='glyphicon glyphicon-eye-close' ng-show="face.blur"></i>
-                            </label>
-                            <a class="glyphicon glyphicon-user col-xs-2" ng-click="FaceList.openLink(face.profile)"></a>
-                        </div>
-                        
-                    </li>
-                </ul>
+                <div class="facesDivScroll">
+                    <ul class="list-unstyled">
+                        <li ng-show="FaceList.faces.length==0">
+                            <strong>Go to someones profile page and press the button below to add them to this list to blur.</strong>
+                        </li>
+                        <li ng-repeat="face in FaceList.faces | orderBy:'text' track by $index"
+                            class="{{face.done ? 'list-checked' : 'list-unchecked'}} text-center">
+                            <div class="row profile-row">
+                                <label class="col-xs-1" for="doneBox">
+                                    <i class='glyphicon glyphicon-{{face.done ? "check":"unchecked"}}'></i>
+                                </label>
+                                <label class="col-xs-7 text-left">
+                                    <input id="doneBox" type="checkbox" ng-model="face.done" ng-hide="true">
+                                    <span>{{face.name}}</span>
+                                </label>
+                                <label class='col-xs-1'>
+                                    <input type="checkbox" ng-model="face.blur" ng-hide="true" ng-click="FaceList.save()" />
+                                    <i class='glyphicon glyphicon-eye-{{face.blur ? "close":"open"}}'></i>
+                                </label>
+                                <a class="glyphicon glyphicon-user col-xs-2" ng-click="FaceList.openLink(face.profile)"></a>
+                                <span class="col-xs-1"></span>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
 
                 <div class="btn-div">
                     <button ng-show="!FaceList.formShow && FaceList.faces.length==0"
