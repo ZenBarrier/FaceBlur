@@ -35,6 +35,12 @@
             $(this).contents().unwrap().wrap('<b oldhref="'+oldLink+'"></b>');
         });
 
+        if (faceCommentDiv.length > 0) {
+            chrome.runtime.sendMessage({ count: faceCommentDiv.length }, function (response) {
+                console.log(response.gotCount);
+            });
+        }
+
         faceCommentDiv.wrap('<div class="blur"></div>');
     }
 
@@ -46,6 +52,12 @@
             $(this).contents().unwrap().wrap('<a href="' + oldLink + '"></a>');
         });
         blurDiv.contents().unwrap();
+
+        if (blurDiv.length > 0) {
+            chrome.runtime.sendMessage({ count: (blurDiv.length)*-1 }, function (response) {
+                console.log(response.gotCount);
+            });
+        }
     }
 
     var observer = new MutationObserver(function (mutations, observer) {
