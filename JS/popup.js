@@ -107,5 +107,8 @@ angular.module('FBlurApp', [])
               console.log("stored");
           });
       }
+      FaceList.openOptions = function () {
+          chrome.runtime.openOptionsPage();
+      }
 
   }]);
