@@ -17,21 +17,26 @@
 
 <body>
     <div id="popbox" class="container">
+        <header>
+            <img src="images/icon48.png" class="center-block logo">
+        </header>
         
         <div class="row">
             <div ng-controller="PopupController as FaceList" class="col-xs-12">
-                <button ng-click="FaceList.archive()" 
-                        ng-disabled='FaceList.selected()==0' 
-                        class="btn btn-danger btn-block">
-                    <span ng-show="FaceList.selected()>0">Delete {{FaceList.selected()}} Selected</span>
-                    <span ng-hide="FaceList.selected()>0">Select to Delete</span>
-                </button>
+                <div class="btn-div">
+                    <button ng-click="FaceList.archive()"
+                            ng-disabled='FaceList.selected()==0'
+                            class="btn btn-block btn-delete">
+                        <span ng-show="FaceList.selected()>0">Delete {{FaceList.selected()}} Selected</span>
+                        <span ng-hide="FaceList.selected()>0">Select to Delete</span>
+                    </button>
+                </div>
 
                 <ul class="list-unstyled">
                     <li ng-repeat="face in FaceList.faces | orderBy:'text' track by $index"
-                        class="{{face.done==false ? 'bg-warning' : 'bg-info'}} text-center">
-                        <div class="row">
-                            <label class="col-xs-8">
+                        class="{{face.done ? 'list-checked' : 'list-unchecked'}} text-center">
+                        <div class="row profile-row">
+                            <label class="col-xs-8 text-left">
                                 <input type="checkbox" ng-model="face.done" ng-hide="true">
                                 <i class='glyphicon glyphicon-unchecked' ng-hide="face.done"></i>
                                 <i class='glyphicon glyphicon-check' ng-show="face.done"></i>
@@ -48,16 +53,18 @@
                     </li>
                 </ul>
 
-                <button ng-click="FaceList.addFace()" 
-                        ng-show="FaceList.formShow && !FaceList.stored" 
-                        class="btn btn-primary btn-block">
-                    Blur {{FaceList.name}}
-                </button>
-                <button ng-click="FaceList.removeFace()" 
-                        ng-show="FaceList.formShow && FaceList.stored" 
-                        class="btn btn-warning btn-block">
-                    Unblur {{FaceList.name}}
-                </button>
+                <div class="btn-div">
+                    <button ng-click="FaceList.addFace()"
+                            ng-show="FaceList.formShow && !FaceList.stored"
+                            class="btn btn-primary btn-block">
+                        Blur {{FaceList.name}}
+                    </button>
+                    <button ng-click="FaceList.removeFace()"
+                            ng-show="FaceList.formShow && FaceList.stored"
+                            class="btn btn-warning btn-block">
+                        Unblur {{FaceList.name}}
+                    </button>
+                </div>
             </div>
         </div>
 

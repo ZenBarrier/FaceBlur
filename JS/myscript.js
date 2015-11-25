@@ -10,7 +10,9 @@
     }, function (items) {
         var blockedFacesObjectArray = items.StoredBlockedFaces;
 
-        blockedFaces = blockedFacesObjectArray.map(function (item) {
+        blockedFaces = blockedFacesObjectArray.filter(function (face, index, array) {
+            return (face.blur);
+        }).map(function (item) {
             return item['profile'];
         });
 
@@ -48,7 +50,9 @@
 
         var blockedFacesObjectArray = changes.StoredBlockedFaces.newValue;
 
-        blockedFaces = blockedFacesObjectArray.map(function (item) {
+        blockedFaces = blockedFacesObjectArray.filter(function (face, index, array) {
+            return (face.blur);
+        }).map(function (item) {
             return item['profile'];
         });
 

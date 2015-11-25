@@ -1,14 +1,47 @@
 ﻿body {
-            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-            font-size: 100%;
-        }
+    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+    font-size: 100%;
+}
 
-        #popbox {
-            /* avoid an excessively wide status text */
-            white-space: normal;
-            text-overflow: ellipsis;
-            overflow: auto;
-            width: 300px;
-            max-height: 400px;
-            -webkit-user-select: none
-        }
+#popbox {
+    white-space: normal;
+    text-overflow: ellipsis;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 300px;
+    max-height: 400px;
+    -webkit-user-select: none;
+}
+header {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+.profile-row{
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:5px;
+    padding-right:5px;
+}
+li{
+    border-style: dashed;
+    border-width: 2px 0px 0px 0px;
+    border-color:rgba(0, 0, 0, 0.66);
+}
+li:last-of-type{
+    border-width: 2px 0px 2px 0px;
+}
+.list-checked{
+    background:rgba(0, 184, 254, 0.30);
+}
+.btn-delete{
+    background:rgba(255, 58, 58, 0.80);
+}
+.btn-delete:disabled{
+    background:rgba(189, 189, 189, 0.32);
+}
+.btn-div{
+    padding:10px;
+}
+body{
+    background-image: url("/images/paper.png");
+}
