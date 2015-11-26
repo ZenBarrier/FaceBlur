@@ -4,7 +4,7 @@
   "name": "Faceblr",
   "short_name": "FBlr",
   "description": "Blur people you don't want to see on Facebook.",
-  "version": "1.0.0.1",
+  "version": "0.8",
 
   "icons": { 
 		"32": "images/icon32.png",
@@ -34,7 +34,6 @@
     "activeTab",
     "storage",
     "tabs",
-    "webNavigation",
-    "https://ajax.googleapis.com/"
+    "webNavigation"
   ]
 }
