@@ -80,6 +80,10 @@ li {
 .btn-div {
     padding: 10px;
 }
+.btn-option{
+    padding:0px;
+    background:rgba(105, 105, 105, 0.55);
+}
 
 body {
     background-image: url("/images/paper.png");

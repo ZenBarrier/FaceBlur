@@ -21,8 +21,8 @@
             <img src="images/icon48.png" class="center-block logo">
         </header>
         
-        <div class="row">
-            <div ng-controller="PopupController as FaceList" class="col-xs-12">
+        <div ng-controller="PopupController as FaceList" class="row">
+            <div class="col-xs-12">
                 <div class="btn-div">
                     <button ng-click="FaceList.archive()"
                             ng-disabled='FaceList.selected()==0'
@@ -75,8 +75,12 @@
                         Unblur {{FaceList.name}}
                     </button>
                 </div>
-                <button class="btn btn-block" ng-click="FaceList.openOptions()">options</button>
             </div>
+            <button class="btn btn-block btn-option" ng-click='FaceList.openOptions()'>
+                <div class="row">
+                    <i class="glyphicon glyphicon-wrench col-xs-3 text-right"></i><span class="col-xs-9 text-left">Options</span>
+                </div>
+            </button>
         </div>
 
     </div>
