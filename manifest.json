@@ -28,14 +28,7 @@
       "js": [ "js/jquery-2.1.4.js", "js/myscript.js" ]
     }
   ],
-  /*
-  "options_ui": {
-    // Required.
-    "page": "options.html",
-    // Recommended.
-    "chrome_style": true
-  },
-  */
+  
   "permissions": [
     "activeTab",
     "storage",
