@@ -3,7 +3,7 @@
 
   "name": "Faceblr",
   "short_name": "FBlr",
-  "description": "This extension shows a Google Image search result for the current page",
+  "description": "Blur people you don't want to see on Facebook.",
   "version": "1.0",
 
   "icons": { 
