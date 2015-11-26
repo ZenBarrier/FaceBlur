@@ -10,7 +10,7 @@ angular.module('FBlurApp', [])
           'onthisday', 'pages', 'developers', 'insights', 'friends', 'notifications',
           'settings', 'campaign', 'help', 'support', 'ads', ''];
 
-      chrome.tabs.query({ 'active': true }, function (tabs) {
+      chrome.tabs.query({ 'active': true, 'currentWindow':true }, function (tabs) {
           var currentTab = tabs[0];
           currentURL = new URL(currentTab.url);
           FaceList.name = currentTab.title;
