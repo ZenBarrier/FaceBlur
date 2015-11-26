@@ -2,6 +2,7 @@
   "manifest_version": 2,
 
   "name": "Faceblr",
+  "short_name": "FBlr",
   "description": "This extension shows a Google Image search result for the current page",
   "version": "1.0",
 
